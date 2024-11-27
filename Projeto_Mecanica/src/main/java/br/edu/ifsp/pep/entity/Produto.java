@@ -10,16 +10,19 @@ public class Produto {
     private String descricao;
     
     private double valor;
+    
+    private Integer quantidadeEstoque;
 
     public Produto() {
     }
 
-    public Produto(Integer codigo, String descricao, double valor) {
+    public Produto(Integer codigo, String descricao, double valor, Integer quantidadeEstoque) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.valor = valor;
+        this.quantidadeEstoque = quantidadeEstoque;
     }
-    
+
     public Integer getCodigo() {
         return codigo;
     }
@@ -44,6 +47,14 @@ public class Produto {
         this.valor = valor;
     }
 
+    public Integer getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;
