@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <h:form>
+            <p:growl id="growl" showDetail="true"/>
+
+            <p:dataTable id="tabela" value="#{pessoaController.pessoasFinanceiro}" 
+                         var="item" selectionMode="single"
+                         selection="#{pessoaController.pessoaSelecionada}"
+                         rowKey="#{item.codigo}"
+                         paginator="true" paginatorPosition="top"
+                         rows="5"
+                         rowsPerPageTemplate="2,4,5,{ShowAll|'All'}">
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{item.codigo}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Remover"
+                                     update="tabela growl"
+                                     action="#{pessoaController.remover}" />
+                </f:facet>
+            </p:dataTable>            
+
+        </h:form>
+        
+        
+    </ui:define>
+
+</ui:composition>
