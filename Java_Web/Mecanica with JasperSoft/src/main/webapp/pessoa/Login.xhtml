@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="primefaces"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+
+        <h:form>
+            <div class="field">
+                <p:outputLabel for="@next" value="Login" class="col-fixed" style="width:100px"/>
+                <p:inputText id="login" value="#{loginController.pessoa.login}" 
+                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"/>
+            </div>
+            <div class="field">
+                <p:outputLabel for="@next" value="Senha" class="col-fixed" style="width:100px"/>
+                <p:password id="senha" value="#{loginController.pessoa.senha}"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"/>
+            </div>
+
+            <p:commandButton value="Acessar" update="@all" action="#{loginController.autenticar()}" />
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>

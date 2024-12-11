@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+
+            <p:dataTable id="tabela" value="#{veiculoController.veiculos}" 
+                         var="item" selectionMode="single"
+                         selection="#{veiculoController.veiculoSelecionado}"
+                         rowKey="#{item.codigo}"
+                         paginator="true" paginatorPosition="top"
+                         rows="5"
+                         rowsPerPageTemplate="2,4,5,{ShowAll|'All'}">
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{item.codigo}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+                </p:column>
+
+                <p:column headerText="Placa">
+                    <h:outputText value="#{item.placa}" />
+                </p:column>
+
+                <p:column headerText="Ano">
+                    <h:outputText value="#{item.ano}" />
+                </p:column>
+
+                <p:column headerText="Valor Aluguel">
+                    <h:outputText value="#{item.valorAluguel}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cadastrar"
+                                     update="tabela growl"
+                                     action="#{veiculoController.prepararCadastro}" />
+                    
+                    <p:commandButton value="Remover"
+                                     update="tabela growl"
+                                     action="#{veiculoController.remover}" />
+                    
+                    <p:commandButton value="Alterar"
+                                     update="tabela growl"
+                                      />
+                </f:facet>
+            </p:dataTable>            
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

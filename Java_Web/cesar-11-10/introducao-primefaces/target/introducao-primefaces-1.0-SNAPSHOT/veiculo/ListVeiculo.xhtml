@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="primefaces"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="top">
+        
+    </ui:define>
+    <ui:define name="content">
+        <p:growl id="growl" showSummary="false" showDetail="true" life="1500" />
+        <h:form>
+            <p:dataTable id="tabela" value="#{veiculoController.veiculos}" 
+                         var="item" selectionMode="single"
+                         selection="#{veiculoController.veiculoSelecionado}"
+                         rowKey="#{item.codigo}"
+                         paginator="true" paginatorPosition="top"
+                         rows="5"
+                         rowsPerPageTemplate="2,4,5,{ShowAll|'All'}">
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{item.codigo}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+                </p:column>
+
+                <p:column headerText="Placa">
+                    <h:outputText value="#{item.placa}" />
+                </p:column>
+
+                <p:column headerText="Ano">
+                    <h:outputText value="#{item.ano}" />
+                </p:column>
+
+                <p:column headerText="Valor Aluguel">
+                    <h:outputText value="#{item.valorAluguel}" />
+                </p:column>
+
+                <f:facet name="footer">
+
+                    <p:commandButton value="Remover"
+                                     update="tabela growl"
+                                     action="#{veiculoController.remover}" />
+
+                </f:facet>
+            </p:dataTable>          
+        </h:form>
+    </ui:define>
+</ui:composition>

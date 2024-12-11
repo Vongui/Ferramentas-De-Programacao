@@ -1,0 +1,19 @@
+/*Pelo id do elemento/tab*/
+
+#titulo1 {
+    text-transform: uppercase;
+}
+
+/*Pela classe*/
+.amarelo {
+    color: yellow;
+}
+
+/*Pela nome do elemento/tag*/
+h1 {
+    
+}
+
+#cadastroPessoa{
+    color: blueviolet;
+}

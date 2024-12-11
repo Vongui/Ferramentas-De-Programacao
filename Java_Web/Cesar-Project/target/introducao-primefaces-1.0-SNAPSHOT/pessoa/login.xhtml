@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="primefaces"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+
+        <h:form>
+
+            <span class="ui-float-label">
+                <p:inputText id="login" value="#{pessoaController.pessoa.login}" />
+                <p:outputLabel for="@previous" value="login"/>
+            </span>
+            <br/>
+            <span class="ui-float-label">
+                <p:inputText id="senha" value="#{pessoaController.pessoa.senha}" />
+                <p:outputLabel for="@previous" value="senha"/>
+            </span>
+                
+
+        </h:form>
+        
+        
+    </ui:define>
+
+</ui:composition>

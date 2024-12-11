@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <h2>Cadastro de Veículos</h2>
+            <div class="field grid">
+                <p:outputLabel for="nome" class="col-fixed" style="width:120px">Nome</p:outputLabel>
+                <div class="col">
+                    <p:inputText id="nome" required="true" requiredMessage="Informe o Nome" value="#{veiculoController.veiculo.nome}"/>
+                </div>
+            </div>
+            <div class="field grid">
+                <p:outputLabel for="placa" class="col-fixed" style="width:120px">Placa</p:outputLabel>
+                <div class="col">
+                    <p:inputText id="placa" required="true" requiredMessage="Informe a Placa" value="#{veiculoController.veiculo.placa}"/>
+                </div>
+            </div>
+            <div class="field grid">
+                <p:outputLabel for="valorAluguel" class="col-fixed" style="width:120px">Valor Aluguel</p:outputLabel>
+                <div class="col">
+                    <p:inputText id="valorAluguel" required="true" value="#{veiculoController.veiculo.valorAluguel}"/>
+                </div>
+            </div>
+            <div class="field grid">
+                <p:outputLabel for="ano" class="col-fixed" style="width:120px">Ano</p:outputLabel>
+                <div class="col">
+                    <p:inputText id="ano" value="#{veiculoController.veiculo.ano}"/>
+                </div>
+            </div>
+            <div class="field grid">
+                <p:outputLabel for="tipoVeiculo" class="col-fixed" style="width:120px">Tipo</p:outputLabel>
+                <div class="col">
+                    <p:selectOneMenu id="tipoVeiculo" value="#{veiculoController.veiculo.tipoVeiculo}">
+                        <f:selectItems value="#{tipoVeiculoController.buscarTiposVeiculos()}"
+                                       var="item" itemLabel="#{item.nome}"
+                                       itemValue="#{item}"/>
+                    </p:selectOneMenu>
+                </div>
+            </div>
+            
+            <p:commandButton value="Cadastrar" update="growl" action="#{veiculoController.adicionar()}" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>

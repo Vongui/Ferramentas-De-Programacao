@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <h:form>
+
+            <div class="ui-fluid formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <p:outputLabel for="@next" value="Nome"/>
+                    <p:inputText id="nome" value="#{pessoaController.pessoa.nome}" 
+                                 required="true"/>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="@next" value="Login"/>
+                    <p:inputText id="login" value="#{pessoaController.pessoa.login}"
+                                 required="true"/>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="@next" value="Senha"/>
+                    <p:password id="senha" value="#{pessoaController.pessoa.senha}" 
+                                required="true"/>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="@next" value="Nível Acesso"/>
+                    <p:selectOneMenu id="nivel" value="#{pessoaController.pessoa.nivelAcesso}"
+                                     required="true">
+                        <f:selectItem itemLabel="Selecione" itemValue=""/>
+                        <f:selectItem itemLabel="Comum" itemValue="Comum"/>
+                        <f:selectItem itemLabel="Financeiro" itemValue="Financeiro"/>
+                        <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+                    </p:selectOneMenu>
+                </div>
+            </div>
+
+            <!-- Expression Language - EL # {} -->
+            <p:commandButton value="Veículo" action="/veiculo/ListVeiculo" />
+            <p:commandButton value="Adicionar" update="tabela growl" action="#{pessoaController.adicionar()}" />
+            <p:commandButton value="Exibir" action="#{pessoaController.exibir()}" />
+
+
+            <p:dataTable id="tabela" value="#{pessoaController.pessoas}" 
+                         var="item" selectionMode="single"
+                         selection="#{pessoaController.pessoaSelecionada}"
+                         rowKey="#{item.codigo}"
+                         paginator="true" paginatorPosition="top"
+                         rows="5"
+                         rowsPerPageTemplate="2,4,5,{ShowAll|'All'}">
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{item.codigo}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+                </p:column>
+                <p:column headerText="Login">
+                    <h:outputText value="#{item.login}" />
+                </p:column>
+                <p:column headerText="Nível Acesso">
+                    <h:outputText value="#{item.nivelAcesso}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Remover"
+                                     update="tabela growl"
+                                     action="#{pessoaController.remover}" />
+                </f:facet>
+            </p:dataTable>            
+
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>

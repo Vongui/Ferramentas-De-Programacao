@@ -1,0 +1,10 @@
+br/edu/ifsp/pep/util/Mensagem.class
+br/edu/ifsp/pep/controller/PessoaController.class
+br/edu/ifsp/pep/entity/StatusVeiculo.class
+br/edu/ifsp/pep/entity/Veiculo.class
+br/edu/ifsp/pep/Teste.class
+br/edu/ifsp/pep/dao/VeiculoDAO.class
+br/edu/ifsp/pep/dao/PessoaDAO.class
+br/edu/ifsp/pep/dao/AbstractDAO.class
+br/edu/ifsp/pep/entity/Pessoa.class
+br/edu/ifsp/pep/controller/VeiculoController.class

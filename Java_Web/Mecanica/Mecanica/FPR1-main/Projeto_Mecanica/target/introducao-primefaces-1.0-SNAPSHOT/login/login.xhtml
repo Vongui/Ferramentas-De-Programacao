@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                        template="/WEB-INF/template.xhtml"
+                        xmlns:h="jakarta.faces.html"
+                        xmlns:f="jakarta.faces.core"
+                        xmlns:p="http://primefaces.org/ui">
+
+            <ui:define name="content">
+                
+                <h:form>
+                    <p:growl id="growl" showDetail="true"/>
+                    
+                    <div class="field">
+                        <span class="ui-float-label">
+                            <p:inputText id="login" value="#{loginController.pessoa.login}" />
+                            <p:outputLabel for="@previous" value="Login" />
+                        </span>
+                    </div>
+                    <div class="field">
+                        <span class="ui-float-label">
+                            <p:inputText id="senha" value="#{loginController.pessoa.senha}" />
+                            <p:outputLabel for="@previous" value="Senha" />
+                        </span>
+                        <p:commandButton value="Acessar" update="tabela growl" action="#{loginController.autenticar()}" />
+                    </div>           
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

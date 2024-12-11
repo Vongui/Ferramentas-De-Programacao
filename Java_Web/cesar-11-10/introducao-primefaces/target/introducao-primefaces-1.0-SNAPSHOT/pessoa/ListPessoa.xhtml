@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="primefaces"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="top">
+        
+    </ui:define>
+    <ui:define name="content">
+        <p:growl id="growl" showSummary="false" showDetail="true" life="1500" />
+        <h:form>
+            <h1 id="cadastroPessoa">Cadastro de Pessoa</h1>
+            
+            <span class="ui-float-label">
+                <p:inputText id="codigo" value="#{pessoaController.pessoa.codigo}" />
+                <p:outputLabel for="@previous" value="Código"/>
+            </span>
+            <br/>
+            <span class="ui-float-label">
+                <p:inputText id="nome" value="#{pessoaController.pessoa.nome}" />
+                <p:outputLabel for="@previous" value="Nome"/>
+            </span>
+
+            
+            <p:commandButton value="Adicionar" update="tabela growl" action="#{pessoaController.adicionar()}" />
+            <p:commandButton value="Exibir" action="#{pessoaController.exibir()}" />
+
+            <p:dataTable id="tabela" value="#{pessoaController.pessoas}" 
+                         var="item" selectionMode="single"
+                         selection="#{pessoaController.pessoaSelecionada}"
+                         rowKey="#{item.codigo}"
+                         paginator="true" paginatorPosition="top"
+                         rows="5"
+                         rowsPerPageTemplate="2,4,5,{ShowAll|'All'}">
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{item.codigo}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Remover"
+                                     update="tabela growl"
+                                     action="#{pessoaController.remover}" />
+                </f:facet>
+            </p:dataTable>            
+        </h:form>
+    </ui:define>
+</ui:composition>
